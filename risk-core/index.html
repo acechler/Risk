@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Risk Combat Simulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <h2>Risk Combat Simulator</h2>
+        <form id="combatForm">
+            <div id="battlefield">
+                <div id="attackerArea">
+                    <h4>Attacker</h4>
+                    <div id="attackerDice"></div>
+                    <p id="attackerArmies"></p>
+                </div>
+                <div id="defenderArea">
+                    <h4>Defender</h4>
+                    <div id="defenderDice"></div>
+                    <p id="defenderArmies"></p>
+                </div>
+            </div>
+            <div>
+                <label for="attackers">Number of Attacking Armies:</label>
+                <input type="number" id="attackers" name="attackers" min="1" value="5">
+            </div>
+            <div>
+                <label for="defenders">Number of Defending Armies:</label>
+                <input type="number" id="defenders" name="defenders" min="1" value="3">
+            </div>
+            <button type="submit">Simulate Combat</button>
+        </form>
+
+        <div id="results"></div>
+
+        <div id="statistics"></div>
+        <button id="resetStats">Reset Statistics</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

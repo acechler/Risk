@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #383838;
+}
+
+#app {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px; /* Limit max width for better readability */
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label, input, button {
+    display: block;
+    margin: 10px auto;
+    padding: 8px;
+}
+
+#battlefield {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    background-color: #e0e0e0;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#attackerArea, #defenderArea {
+    text-align: center;
+}
+
+#attackerArea {
+    color: #d32f2f; /* Red color for attackers */
+}
+
+#defenderArea {
+    color: #1976d2; /* Blue color for defenders */
+}
+
+.dice {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin: 5px;
+    background-color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    border: 2px solid #000; /* Add border to dice */
+    font-weight: bold;
+}
+
+#results, #statistics {
+    background-color: #f0f0f0;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 5px;
+}
+
+.battleConclusion {
+    color: #4caf50;
+    font-weight: bold;
+    margin-top: 10px;
+}
