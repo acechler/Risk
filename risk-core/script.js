@@ -8,9 +8,11 @@ let stats = {
 document.getElementById('combatForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
+    // Grab the divs inside the html form. This is where data will be displayed depending on the team.
     const attackers = parseInt(document.getElementById('attackers').value, 10);
     const defenders = parseInt(document.getElementById('defenders').value, 10);
 
+    // This is where the battle is calculated.
     const result = simulateCombat(attackers, defenders);
     updateStatistics(result);
     displayResult(result);
@@ -60,6 +62,16 @@ function updateStatistics(result) {
     stats.totalSimulations++;
 }
 
+function getBattleConclusion(remainingAttackerArmies, remainingDefenderArmies) {
+    if (remainingAttackerArmies <= 0) {
+        return "Defender wins the battle!";
+    } else if (remainingDefenderArmies <= 0) {
+        return "Attacker wins the battle!";
+    }
+    return "Ongoing"; // Return an empty string if the battle is not concluded
+}
+
+
 
 function displayResult(result) {
     const resultsDiv = document.getElementById('results');
@@ -72,7 +84,7 @@ function displayResult(result) {
     attackerDiceDiv.innerHTML = result.attackerRolls.map(roll => `<div class="dice">${roll}</div>`).join('');
     defenderDiceDiv.innerHTML = result.defenderRolls.map(roll => `<div class="dice">${roll}</div>`).join('');
 
- 
+
     // Calculate remaining armies
     let remainingAttackerArmies = parseInt(document.getElementById('attackers').value, 10) - result.attackerLosses;
     let remainingDefenderArmies = parseInt(document.getElementById('defenders').value, 10) - result.defenderLosses;
@@ -83,12 +95,10 @@ function displayResult(result) {
     attackerArmiesP.textContent = `Remaining Armies: ${remainingAttackerArmies}`;
     defenderArmiesP.textContent = `Remaining Armies: ${remainingDefenderArmies}`;
 
-    //TODO Fix and display the victor of a battle.
-    // Check if the battle has concluded and store the conclusion message
-    let battleConclusion = '';
-    if (remainingAttackerArmies <= 0 || remainingDefenderArmies <= 0) {
-        battleConclusion = remainingDefenderArmies <= 0 ? "<p class='battleConclusion'>Attacker wins the battle!</p>" : "<p class='battleConclusion'>Defender wins the battle!</p>";
-    }
+    /// TODO: Add Battle Conclusion to stats, this will allow more flexibility to display battle status.
+    // Battle Conclusion
+    let battleConclusion = getBattleConclusion(remainingAttackerArmies, remainingDefenderArmies);
+    console.log(battleConclusion);
 
     resultsDiv.innerHTML = `
         <h3>Combat Results:</h3>
@@ -97,8 +107,10 @@ function displayResult(result) {
         <p>Attacker Losses: ${result.attackerLosses}</p>
         <p>Defender Losses: ${result.defenderLosses}</p>
     `;
-       // Append the battle conclusion message
-       resultsDiv.innerHTML += battleConclusion;
+    // Append the battle conclusion message
+    if (battleConclusion) {
+        resultsDiv.innerHTML += `<p class='battleConclusion'>${battleConclusion}</p>`;
+    }
 }
 
 function displayStatistics() {
